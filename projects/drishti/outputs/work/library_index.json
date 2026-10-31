@@ -1,0 +1,308 @@
+[
+  {
+    "file": "00_README.md",
+    "folder": "00_README.md",
+    "bytes": 2149,
+    "date_hint": "",
+    "lines": 34
+  },
+  {
+    "file": "01_contract/MSA_confidentiality_and_publicity_extract.md",
+    "folder": "01_contract",
+    "bytes": 2914,
+    "date_hint": "",
+    "lines": 45
+  },
+  {
+    "file": "02_scoping/2026-02-06_discovery_call_transcript.txt",
+    "folder": "02_scoping",
+    "bytes": 5967,
+    "date_hint": "2026-02-06",
+    "lines": 66
+  },
+  {
+    "file": "02_scoping/2026-02-14_RFQ_ACWL-BHD-EHS-2026-07.md",
+    "folder": "02_scoping",
+    "bytes": 1609,
+    "date_hint": "2026-02-14",
+    "lines": 32
+  },
+  {
+    "file": "02_scoping/2026-02-24_PredCo_proposal_v1.md",
+    "folder": "02_scoping",
+    "bytes": 2508,
+    "date_hint": "2026-02-24",
+    "lines": 52
+  },
+  {
+    "file": "02_scoping/2026-03-05_BRD_v2_signed.md",
+    "folder": "02_scoping",
+    "bytes": 3202,
+    "date_hint": "2026-03-05",
+    "lines": 60
+  },
+  {
+    "file": "03_commercial/change_requests_CR01-CR03.md",
+    "folder": "03_commercial",
+    "bytes": 1942,
+    "date_hint": "",
+    "lines": 27
+  },
+  {
+    "file": "03_commercial/purchase_orders.md",
+    "folder": "03_commercial",
+    "bytes": 1903,
+    "date_hint": "",
+    "lines": 42
+  },
+  {
+    "file": "04_delivery/incident_report_INC-0611.md",
+    "folder": "04_delivery",
+    "bytes": 1618,
+    "date_hint": "",
+    "lines": 33
+  },
+  {
+    "file": "04_delivery/pilot_acceptance_certificate_2026-07-06.md",
+    "folder": "04_delivery",
+    "bytes": 1339,
+    "date_hint": "2026-07-06",
+    "lines": 26
+  },
+  {
+    "file": "04_delivery/project_tracker.csv",
+    "folder": "04_delivery",
+    "bytes": 3697,
+    "date_hint": "",
+    "lines": 31
+  },
+  {
+    "file": "05_meetings/2026-04-17_poc_review_transcript.txt",
+    "folder": "05_meetings",
+    "bytes": 3880,
+    "date_hint": "2026-04-17",
+    "lines": 49
+  },
+  {
+    "file": "05_meetings/2026-06-26_steering_committee_transcript.txt",
+    "folder": "05_meetings",
+    "bytes": 3574,
+    "date_hint": "2026-06-26",
+    "lines": 52
+  },
+  {
+    "file": "05_meetings/2026-09-18_QBR_transcript.txt",
+    "folder": "05_meetings",
+    "bytes": 4089,
+    "date_hint": "2026-09-18",
+    "lines": 50
+  },
+  {
+    "file": "06_email/A_2026-01-28_inbound_and_first_reply.md",
+    "folder": "06_email",
+    "bytes": 1416,
+    "date_hint": "2026-01-28",
+    "lines": 39
+  },
+  {
+    "file": "06_email/B_2026-02-17_to_03-02_security_review.md",
+    "folder": "06_email",
+    "bytes": 1829,
+    "date_hint": "2026-02-17",
+    "lines": 47
+  },
+  {
+    "file": "06_email/C_2026-03-31_EHS_handover.md",
+    "folder": "06_email",
+    "bytes": 1232,
+    "date_hint": "2026-03-31",
+    "lines": 35
+  },
+  {
+    "file": "06_email/D_2026-05-14_to_06-02_face_recognition_privacy.md",
+    "folder": "06_email",
+    "bytes": 2076,
+    "date_hint": "2026-05-14",
+    "lines": 56
+  },
+  {
+    "file": "06_email/E_2026-07-01_pilot_results_numbers.md",
+    "folder": "06_email",
+    "bytes": 2074,
+    "date_hint": "2026-07-01",
+    "lines": 59
+  },
+  {
+    "file": "06_email/F_2026-08-21_to_09-03_payment_GRN.md",
+    "folder": "06_email",
+    "bytes": 1184,
+    "date_hint": "2026-08-21",
+    "lines": 39
+  },
+  {
+    "file": "06_email/G_2026-09-22_finance_value_estimate.md",
+    "folder": "06_email",
+    "bytes": 1873,
+    "date_hint": "2026-09-22",
+    "lines": 34
+  },
+  {
+    "file": "06_email/H_2026-09-24_to_09-30_case_study_permission.md",
+    "folder": "06_email",
+    "bytes": 2299,
+    "date_hint": "2026-09-24",
+    "lines": 62
+  },
+  {
+    "file": "07_data/baseline_manual_safety_walks_2025Q4.csv",
+    "folder": "07_data",
+    "bytes": 7906,
+    "date_hint": "",
+    "lines": 104
+  },
+  {
+    "file": "07_data/data_dictionary.md",
+    "folder": "07_data",
+    "bytes": 2049,
+    "date_hint": "",
+    "lines": 35
+  },
+  {
+    "file": "07_data/ehs_register_monthly_2025_2026.csv",
+    "folder": "07_data",
+    "bytes": 1154,
+    "date_hint": "",
+    "lines": 22
+  },
+  {
+    "file": "07_data/gate_truck_turnaround_daily.csv",
+    "folder": "07_data",
+    "bytes": 7476,
+    "date_hint": "",
+    "lines": 123
+  },
+  {
+    "file": "07_data/invoices_and_payments.csv",
+    "folder": "07_data",
+    "bytes": 632,
+    "date_hint": "",
+    "lines": 6
+  },
+  {
+    "file": "07_data/supervisor_survey_sep2026.csv",
+    "folder": "07_data",
+    "bytes": 1610,
+    "date_hint": "",
+    "lines": 19
+  },
+  {
+    "file": "07_data/viewos_weekly_zone_metrics.csv",
+    "folder": "07_data",
+    "bytes": 8849,
+    "date_hint": "",
+    "lines": 147
+  },
+  {
+    "file": "08_github/CHANGELOG.md",
+    "folder": "08_github",
+    "bytes": 1357,
+    "date_hint": "",
+    "lines": 30
+  },
+  {
+    "file": "08_github/configs/site_bhadrapur.yaml",
+    "folder": "08_github",
+    "bytes": 1291,
+    "date_hint": "",
+    "lines": 27
+  },
+  {
+    "file": "08_github/docs/model_eval_report.md",
+    "folder": "08_github",
+    "bytes": 1205,
+    "date_hint": "",
+    "lines": 19
+  },
+  {
+    "file": "08_github/git_log.txt",
+    "folder": "08_github",
+    "bytes": 2066,
+    "date_hint": "",
+    "lines": 24
+  },
+  {
+    "file": "08_github/README.md",
+    "folder": "08_github",
+    "bytes": 1483,
+    "date_hint": "",
+    "lines": 26
+  },
+  {
+    "file": "09_feedback/linkedin_post_2026-09-30_Meenakshi_Iyer.md",
+    "folder": "09_feedback",
+    "bytes": 1057,
+    "date_hint": "2026-09-30",
+    "lines": 18
+  },
+  {
+    "file": "09_feedback/whatsapp_Drishti-Packing_group_export.txt",
+    "folder": "09_feedback",
+    "bytes": 2481,
+    "date_hint": "",
+    "lines": 27
+  },
+  {
+    "file": "10_media/architecture_as_built_revC.png",
+    "folder": "10_media",
+    "bytes": 63894,
+    "date_hint": "",
+    "image_meta": {
+      "size": "1400x760"
+    }
+  },
+  {
+    "file": "10_media/cam_PK2-07_alert_snapshot_2026-06-29.jpg",
+    "folder": "10_media",
+    "bytes": 53122,
+    "date_hint": "2026-06-29",
+    "image_meta": {
+      "size": "1280x720",
+      "Model": "DS-2CD2T47G2",
+      "GPSInfo": "132",
+      "ImageDescription": "Bhadrapur PK2 cam 07 export for Drishti review",
+      "Make": "Hikvision",
+      "GPS": "21.8342N, 82.0522E"
+    }
+  },
+  {
+    "file": "10_media/dashboard_export_ppe_weekly_2026-09-25.png",
+    "folder": "10_media",
+    "bytes": 71811,
+    "date_hint": "2026-09-25",
+    "image_meta": {
+      "size": "1210x506",
+      "Software": "Matplotlib version3.11.2, https://matplotlib.org/"
+    }
+  },
+  {
+    "file": "11_public/ardent_public_profile.md",
+    "folder": "11_public",
+    "bytes": 1153,
+    "date_hint": "",
+    "lines": 24
+  },
+  {
+    "file": "12_vendor/sales_deck_draft_notes_2026-09-23.md",
+    "folder": "12_vendor",
+    "bytes": 771,
+    "date_hint": "2026-09-23",
+    "lines": 17
+  },
+  {
+    "file": "12_vendor/vendor_profile_team_achievements.md",
+    "folder": "12_vendor",
+    "bytes": 1410,
+    "date_hint": "",
+    "lines": 27
+  }
+]

@@ -1,0 +1,10 @@
+[17:07:36] librarian: indexed 42 files; 2 images carry metadata
+[17:07:36] extractor: loaded 157 cached evidence items from evidence.json
+[17:07:37] extractor: 157 items traced to a file and line; 0 refused
+[17:07:37] historian: story spine: 78 dated lines across 10 months
+[17:07:37] analyst: computed 54 metrics; 8 results written with working
+[17:07:37] exposure: 25 identifiers and 7 pattern types found; 9 combination risks; 3 media files reviewed
+[17:07:37] writer: loaded 4 reviewed drafts
+[17:07:37] factcheck: 126 lines kept; 0 refused
+[17:07:39] media: built 5 assets: cohort_chart, phase_chart, architecture, one_slide, roi_calculator
+[17:07:39] approval: approval pack frozen (sha256 e0c5f5d9157b...); reply-by 2026-11-18; STOPPED for human review

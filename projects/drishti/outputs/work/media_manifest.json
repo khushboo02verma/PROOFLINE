@@ -1,0 +1,55 @@
+[
+  {
+    "asset": "cohort_chart",
+    "file": "05_media/chart_compliance_cohorts.png",
+    "label": "Chart drawn from recomputed project data (not a screenshot)",
+    "why": "Answers the dashboard 'dip' honestly: new areas start low, pilot areas hold",
+    "reader": "Buyer and user",
+    "sources": [
+      "07_data/viewos_weekly_zone_metrics.csv"
+    ]
+  },
+  {
+    "asset": "phase_chart",
+    "file": "05_media/chart_gate_turnaround.png",
+    "label": "Chart drawn from project data; causes labelled",
+    "why": "Shows the gate result with shared credit visible, so finance can defend it",
+    "reader": "Buyer and gatekeeper",
+    "sources": [
+      "07_data/gate_truck_turnaround_daily.csv"
+    ]
+  },
+  {
+    "asset": "architecture",
+    "file": "05_media/architecture_generic.png",
+    "label": "Illustration: generic redrawn architecture, no addresses or names",
+    "why": "IT security's first question is where the data goes",
+    "reader": "Gatekeeper",
+    "sources": [
+      "01_contract (Annexure D)",
+      "06_email/B",
+      "08_github/README.md"
+    ]
+  },
+  {
+    "asset": "one_slide",
+    "file": "05_media/case_study_slide.pptx",
+    "label": "One slide for the sales deck (draft)",
+    "why": "One headline number, one chart, shared credit",
+    "reader": "Buyer",
+    "sources": [
+      "metrics",
+      "evidence ledger"
+    ]
+  },
+  {
+    "asset": "roi_calculator",
+    "file": "05_media/gate_payback_calculator.html",
+    "label": "Interactive calculator; reader enters their own numbers",
+    "why": "Lets a buyer test payback on their own detention costs instead of trusting ours",
+    "reader": "Buyer (and finance)",
+    "sources": [
+      "metrics det_change_pct"
+    ]
+  }
+]

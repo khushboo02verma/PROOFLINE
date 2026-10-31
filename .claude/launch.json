@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "case-study-engine",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["webapp.py"],
+      "port": 8765
+    }
+  ]
+}

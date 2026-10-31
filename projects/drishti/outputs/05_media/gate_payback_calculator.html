@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gate payback calculator</title><style>
+:root{--bg:#fff;--ink:#1f2933;--muted:#6b7280;--accent:#1d6fb8;--card:#f3f7fb}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif;margin:0;padding:24px 16px}
+main{max-width:680px;margin:auto}h1{font-size:24px;margin:0 0 8px}p{color:var(--muted)}
+label{display:block;margin:14px 0;font-weight:600}input{display:block;width:100%;box-sizing:border-box;padding:10px;font:inherit;margin-top:4px;border:1px solid var(--muted);border-radius:6px;background:var(--bg);color:var(--ink)}
+.out{background:var(--card);border-radius:10px;padding:16px;margin-top:20px}.big{font-size:28px;font-weight:700;color:var(--accent)}small{color:var(--muted)}
+</style></head><body><main>
+<h1>Gate payback calculator</h1><p>Enter your own figures. Nothing is sent anywhere; the page calculates in your browser.</p>
+<p><strong>Measured on the reference project:</strong> Detention charges fell 68% from the June-July average to September, with the client&#x27;s own gate changes contributing</p>
+<label>Your monthly truck detention cost<input id="cost" type="number" step="any" value="" placeholder="e.g. from your ERP"></label>
+<label>Reduction you expect, % (reference project: 68% in its first full month)<input id="reduction" type="number" step="any" value="68" placeholder=""></label>
+<label>Share you credit to the system, %<input id="share" type="number" step="any" value="50" placeholder=""></label>
+<label>Your expected project cost (same currency)<input id="project" type="number" step="any" value="" placeholder="total"></label>
+<div class="out"><div>Estimated monthly saving attributed to the system</div><div class="big" id="save">-</div>
+<div>Simple payback</div><div class="big" id="payback">-</div></div>
+<p><small>The reference client&#x27;s finance team credits the system with &#x27;a share&#x27; of the saving, not all of it, and treats one month as not yet a trend. Set the share accordingly.</small></p>
+<script>
+const g=id=>parseFloat(document.getElementById(id).value);
+function calc(){const c=g('cost'),r=g('reduction')/100,s=g('share')/100,p=g('project');
+const save=c*r*s;document.getElementById('save').textContent=isFinite(save)?save.toLocaleString('en-IN',{maximumFractionDigits:0})+' per month':'-';
+const pb=p/save;document.getElementById('payback').textContent=isFinite(pb)&&pb>0?pb.toFixed(1)+' months':'-';}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',calc));calc();
+</script></main></body></html>

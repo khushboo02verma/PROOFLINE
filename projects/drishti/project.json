@@ -1,0 +1,338 @@
+{
+  "project_label": "Drishti (AI safety cameras + gate analytics, Jan-Sep 2026)",
+  "library": "../../library/Project_Drishti_Library",
+  "industry": "manufacturing",
+  "vendor": "PredCo (Panscience Predictive Technologies)",
+  "anonymised_name": "an Indian cement manufacturer",
+  "anonymised_title": "An Indian cement manufacturer sees its real safety number - and changes it",
+  "contract_basis": "MSA clauses 14 (confidentiality), 15 (publicity) and Annexure D (data handling), file 01_contract/MSA_confidentiality_and_publicity_extract.md",
+
+  "phases": [
+    {"name": "First contact and scoping", "from": "2026-01-28", "to": "2026-03-05", "what": "Inbound email, discovery call, RFQ, security review, proposal, signed BRD v2 with lowered targets"},
+    {"name": "Proof of concept", "from": "2026-03-09", "to": "2026-04-17", "what": "12 cameras; sponsor change; 23% false alarms nearly stop the project"},
+    {"name": "Pilot", "from": "2026-05-04", "to": "2026-07-06", "what": "40 cameras incl. kiln; face recognition removed; 41-hour outage; retrain; accepted with conditions"},
+    {"name": "Plant-wide and gate", "from": "2026-07-02", "to": "2026-09-30", "what": "All cameras plus gate analytics; client guards, phone rule and dispatch slots; QBR; case-study request"}
+  ],
+
+  "tracker": {"file": "04_delivery/project_tracker.csv", "id": "id", "task": "task", "owner": "owner", "planned_end": "planned_end", "actual_end": "actual_end", "status": "status", "notes": "notes"},
+
+  "datasets": {
+    "weekly": "07_data/viewos_weekly_zone_metrics.csv",
+    "walks": "07_data/baseline_manual_safety_walks_2025Q4.csv",
+    "gate": "07_data/gate_truck_turnaround_daily.csv",
+    "survey": "07_data/supervisor_survey_sep2026.csv",
+    "ehs": "07_data/ehs_register_monthly_2025_2026.csv"
+  },
+
+  "metrics": [
+    {"id": "K1_base", "name": "K1 PPE compliance, pilot weeks 1-2", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": {"in": ["2026-05-11", "2026-05-18"]}}},
+    {"id": "K1_result", "name": "K1 PPE compliance, last 4 pilot weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-06-08", "2026-06-29"]}}},
+    {"id": "K1_change_pts", "name": "K1 change, percentage points", "op": "expr", "expr": "r - b", "inputs": {"r": "K1_result", "b": "K1_base"}, "unit": " pts"},
+    {"id": "K1_final_week", "name": "K1 final pilot week (all pilot cameras)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": "2026-06-29"}},
+    {"id": "K1_packing_best", "name": "Packing pilot cameras, best week (week of 29 Jun)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "zone": "packing", "week_start": "2026-06-29"}},
+    {"id": "K1_post_pilot", "name": "PPE compliance, pilot cameras, last 4 weeks (31 Aug-27 Sep)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+    {"id": "K1_post_scale", "name": "PPE compliance, cameras added after the pilot, last 4 weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "scale", "week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+    {"id": "K1_post_all", "name": "PPE compliance, all cameras, last 4 weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+    {"id": "K1_scale_first", "name": "PPE compliance, first week of added cameras (week of 6 Jul)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"camera_cohort": "scale", "week_start": "2026-07-06"}},
+    {"id": "K1_aug_all", "name": "PPE compliance, all cameras, weeks of 3-24 Aug (the dashboard 'dip')", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"week_start": {"between": ["2026-08-03", "2026-08-24"]}}},
+    {"id": "K1_gate_yard", "name": "PPE compliance, gate-yard cameras, last 4 weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "unit": "%", "filter": {"zone": "gate_yard", "week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+
+    {"id": "K2_base", "name": "K2 restricted-zone breaches per 1,000 camera-hours, pilot weeks 1-2", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "restricted_zone_breaches", "denominator": "camera_hours", "scale": 1000, "decimals": 2, "filter": {"camera_cohort": "pilot", "week_start": {"in": ["2026-05-11", "2026-05-18"]}}},
+    {"id": "K2_result", "name": "K2 breaches per 1,000 camera-hours, last 4 pilot weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "restricted_zone_breaches", "denominator": "camera_hours", "scale": 1000, "decimals": 2, "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-06-08", "2026-06-29"]}}},
+    {"id": "K2_change_pct", "name": "K2 change vs baseline", "op": "expr", "expr": "100 * (r - b) / b", "inputs": {"r": "K2_result", "b": "K2_base"}, "unit": "%"},
+    {"id": "K2_post", "name": "Breaches per 1,000 camera-hours, pilot cameras, last 4 weeks (after guards)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "restricted_zone_breaches", "denominator": "camera_hours", "scale": 1000, "decimals": 2, "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+    {"id": "K2_post_change", "name": "Breaches change vs pilot baseline, after guards", "op": "expr", "expr": "100 * (r - b) / b", "inputs": {"r": "K2_post", "b": "K2_base"}, "unit": "%"},
+
+    {"id": "K3_base", "name": "K3 acknowledgement minutes, pilot weeks 1-2 (alert-weighted)", "dataset": "weekly", "op": "weighted_mean", "column": "median_ack_minutes", "weight": "alerts_raised", "unit": " min", "filter": {"camera_cohort": "pilot", "week_start": {"in": ["2026-05-11", "2026-05-18"]}}, "note": "Alert-weighted mean of weekly zone medians; reproduces the certificate. A true median needs alert-level data, which is not in the library."},
+    {"id": "K3_result", "name": "K3 acknowledgement minutes, last 4 pilot weeks", "dataset": "weekly", "op": "weighted_mean", "column": "median_ack_minutes", "weight": "alerts_raised", "unit": " min", "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-06-08", "2026-06-29"]}}},
+    {"id": "K3_final_week", "name": "K3 acknowledgement minutes, final pilot week", "dataset": "weekly", "op": "weighted_mean", "column": "median_ack_minutes", "weight": "alerts_raised", "unit": " min", "filter": {"camera_cohort": "pilot", "week_start": "2026-06-29"}},
+    {"id": "K3_post_pilot", "name": "Acknowledgement minutes, pilot cameras, last 4 weeks (after phone rule)", "dataset": "weekly", "op": "weighted_mean", "column": "median_ack_minutes", "weight": "alerts_raised", "unit": " min", "filter": {"camera_cohort": "pilot", "week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+    {"id": "K3_post_all", "name": "Acknowledgement minutes, all cameras, last 4 weeks", "dataset": "weekly", "op": "weighted_mean", "column": "median_ack_minutes", "weight": "alerts_raised", "unit": " min", "filter": {"week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+
+    {"id": "K4_base", "name": "False alarms, pilot weeks 1-2 (EHS sample, scaled)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "alerts_false_verified", "denominator": "alerts_raised", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": {"in": ["2026-05-11", "2026-05-18"]}}},
+    {"id": "K4_result", "name": "K4 false alarms, last 2 pilot weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "alerts_false_verified", "denominator": "alerts_raised", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "week_start": {"in": ["2026-06-22", "2026-06-29"]}}},
+    {"id": "K4_kiln_last2", "name": "False alarms, kiln hot-zone cameras, last 2 pilot weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "alerts_false_verified", "denominator": "alerts_raised", "scale": 100, "unit": "%", "filter": {"camera_cohort": "pilot", "zone": "kiln", "week_start": {"in": ["2026-06-22", "2026-06-29"]}}},
+    {"id": "K4_post_all", "name": "False alarms, all cameras, last 4 weeks", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "alerts_false_verified", "denominator": "alerts_raised", "scale": 100, "unit": "%", "filter": {"week_start": {"between": ["2026-08-31", "2026-09-21"]}}},
+
+    {"id": "outage_hours", "name": "Usable camera-hours, pilot, week of 8 Jun (outage week)", "dataset": "weekly", "op": "sum", "column": "camera_hours", "decimals": 0, "filter": {"camera_cohort": "pilot", "week_start": "2026-06-08"}},
+    {"id": "outage_lost", "name": "Camera-hours lost in outage week (40 cameras x 168 h minus usable)", "op": "expr", "expr": "40 * 168 - u", "inputs": {"u": "outage_hours"}, "decimals": 0, "unit": " camera-hours"},
+
+    {"id": "walk_compliance", "name": "Manual safety-walk compliance, Q4 2025", "dataset": "walks", "op": "ratio_of_sums", "numerator": "fully_compliant", "denominator": "people_observed", "scale": 100, "unit": "%", "filter": {}},
+    {"id": "walk_people", "name": "People observed on Q4 2025 walks", "dataset": "walks", "op": "sum", "column": "people_observed", "decimals": 0, "filter": {}},
+    {"id": "walk_count", "name": "Number of walks in Q4 2025", "dataset": "walks", "op": "count", "decimals": 0, "filter": {}},
+    {"id": "walk_announced", "name": "Walks with remark 'announced on shift WhatsApp group'", "dataset": "walks", "op": "count", "decimals": 0, "filter": {"remarks": {"contains": "announced"}}},
+    {"id": "walk_gap", "name": "Walk score minus camera baseline (points)", "op": "expr", "expr": "w - b", "inputs": {"w": "walk_compliance", "b": "K1_base"}, "unit": " pts"},
+
+    {"id": "gate_manual_mean", "name": "Truck turnaround, manual register 1 Jun-2 Aug (K5 baseline)", "dataset": "gate", "op": "mean", "column": "avg_turnaround_min", "unit": " min", "filter": {"source": {"contains": "manual"}, "avg_turnaround_min": {"nonblank": true}}},
+    {"id": "gate_manual_missing", "name": "Manual-register days with no figure", "dataset": "gate", "op": "count", "decimals": 0, "filter": {"source": {"contains": "manual"}, "avg_turnaround_min": {"blank": true}}},
+    {"id": "gate_anpr_first", "name": "Truck turnaround, camera data, 3-17 Aug (before client gate changes)", "dataset": "gate", "op": "mean", "column": "avg_turnaround_min", "unit": " min", "filter": {"date": {"between": ["2026-08-03", "2026-08-17"]}}},
+    {"id": "gate_anpr_wb", "name": "Truck turnaround, camera data, 18-24 Aug (after client gate-infrastructure upgrade)", "dataset": "gate", "op": "mean", "column": "avg_turnaround_min", "unit": " min", "filter": {"date": {"between": ["2026-08-18", "2026-08-24"]}}},
+    {"id": "gate_anpr_slots", "name": "Truck turnaround, camera data, 25 Aug-30 Sep (dispatch slots), excl. 11 Sep calibration day", "dataset": "gate", "op": "mean", "column": "avg_turnaround_min", "unit": " min", "filter": {"date": {"between": ["2026-08-25", "2026-09-30"], "not_in": ["2026-09-11"]}}, "note": "11 Sep excluded: 6 h weighbridge calibration downtime (same exclusion as commit e41c9a2)."},
+    {"id": "K5_change_vs_register", "name": "K5 turnaround change vs manual-register baseline (contract definition)", "op": "expr", "expr": "100 * (s - m) / m", "inputs": {"s": "gate_anpr_slots", "m": "gate_manual_mean"}, "unit": "%"},
+    {"id": "gate_like_for_like", "name": "Turnaround change, camera data only (first 2 weeks vs dispatch-slot period)", "op": "expr", "expr": "100 * (s - f) / f", "inputs": {"s": "gate_anpr_slots", "f": "gate_anpr_first"}, "unit": "%"},
+    {"id": "gate_step_infra", "name": "Minutes removed in the week after the client's gate-infrastructure upgrade", "op": "expr", "expr": "f - w", "inputs": {"f": "gate_anpr_first", "w": "gate_anpr_wb"}, "unit": " min"},
+    {"id": "gate_step_slots", "name": "Minutes removed after dispatch slots began", "op": "expr", "expr": "w - s", "inputs": {"w": "gate_anpr_wb", "s": "gate_anpr_slots"}, "unit": " min"},
+
+    {"id": "det_junjul", "name": "Detention paid, Jun-Jul average (lakh/month)", "op": "expr", "expr": "(jun + jul) / 2", "inputs": {"jun": {"value": 11.8, "evidence": "e70b"}, "jul": {"value": 12.4, "evidence": "e70b"}}, "unit": " L/month"},
+    {"id": "det_sep", "name": "Detention paid, September (finance estimate to month end, lakh)", "op": "expr", "expr": "s", "inputs": {"s": {"value": 3.9, "evidence": "e70b"}}, "unit": " L/month"},
+    {"id": "det_change_pct", "name": "Detention change, September vs Jun-Jul average", "op": "expr", "expr": "100 * (s - b) / b", "inputs": {"s": "det_sep", "b": "det_junjul"}, "unit": "%", "note": "One month of data; September is partly an estimate; not all of it is the project's (client gate upgrade, client dispatch slots)."},
+
+    {"id": "survey_n", "name": "Supervisor survey respondents", "dataset": "survey", "op": "count", "decimals": 0, "filter": {}},
+    {"id": "survey_useful", "name": "Alerts useful (mean, 1-5)", "dataset": "survey", "op": "mean", "column": "alerts_useful_1to5", "filter": {}},
+    {"id": "survey_noise", "name": "Alert noise (mean, 1-5, lower is better)", "dataset": "survey", "op": "mean", "column": "noise_1to5", "filter": {}},
+    {"id": "survey_yes", "name": "Would recommend to another unit: Yes", "dataset": "survey", "op": "count", "decimals": 0, "filter": {"would_recommend_other_unit": "Yes"}},
+    {"id": "survey_dups", "name": "Survey comments repeated word-for-word", "dataset": "survey", "op": "duplicate_count", "column": "comment", "decimals": 0, "filter": {}},
+
+    {"id": "lti_2025", "name": "Lost-time injuries, 2025", "dataset": "ehs", "op": "sum", "column": "lost_time_injuries", "decimals": 0, "filter": {"month": {"between": ["2025-01", "2025-12"]}}},
+    {"id": "lti_mar_sep_2026", "name": "Lost-time injuries, Mar-Sep 2026", "dataset": "ehs", "op": "sum", "column": "lost_time_injuries", "decimals": 0, "filter": {"month": {"between": ["2026-03", "2026-09"]}}},
+    {"id": "nearmiss_pre", "name": "Near-miss reports per month, Jan-May 2026", "dataset": "ehs", "op": "mean", "column": "near_miss_reports", "filter": {"month": {"between": ["2026-01", "2026-05"]}}},
+    {"id": "nearmiss_post", "name": "Near-miss reports per month, Jul-Sep 2026 (definition changed 15 Jun)", "dataset": "ehs", "op": "mean", "column": "near_miss_reports", "filter": {"month": {"between": ["2026-07", "2026-09"]}}},
+
+    {"id": "spend_total", "name": "Project spend to date (lakh, before GST, excl. AMC)", "op": "expr", "expr": "a + b + c", "inputs": {"a": {"value": 6.5, "evidence": "e118"}, "b": {"value": 20.4, "evidence": "e118"}, "c": {"value": 80.8, "evidence": "e118"}}, "unit": " L"}
+  ],
+
+  "results": [
+    {"id": "K1", "name": "PPE compliance (helmet and vest)", "definition": "Persons observed wearing both helmet and vest / persons observed. A person = one tracked person per camera per 10-minute window (one person on two cameras counts twice).",
+     "baseline": "K1_base", "baseline_window": "camera-measured, pilot weeks 1-2 (11-24 May), 40 pilot cameras, per BRD v2", "window": "Average of last 4 pilot weeks (8 Jun-5 Jul), ratio of sums", "method": "Recomputed from the weekly export: sum(ppe_compliant) / sum(persons_observed), pilot cohort only",
+     "finals": [["K1_result", "pilot result (BRD window)"], ["K1_post_pilot", "pilot cameras, Sep"], ["K1_post_all", "all cameras, Sep"]],
+     "target": "≥ 90% (BRD v2; proposal had promised 95%)", "status": "MET (91.1% vs 90%). Still above target on pilot cameras in September; all-camera figure is lower because areas added later started lower.",
+     "contributors": "Client: safety week in April, daily toolbox talks from May, two contractor gangs suspended in May (identified from snapshots), gang bonus for >95% in Sep. Vendor: on-site retrain on 4,200 frames (15 Jun) cut false alarms so supervisors trusted the alerts.",
+     "worth": "+22.2 points in 8 weeks on a like-for-like camera measure. The pilot areas held at ~94% three months later. It is a leading indicator; it does not by itself prove fewer injuries.",
+     "extra_metrics": ["K1_change_pts", "K1_final_week", "K1_packing_best", "K1_post_scale", "K1_scale_first", "K1_aug_all", "K1_gate_yard", "walk_compliance", "walk_people", "walk_count", "walk_announced", "walk_gap"],
+     "disagreements": [
+       {"claim": "74% -> 96.6%, 'a 31% improvement'", "where": "06_email/E (vendor email, 1 Jul); 12_vendor/sales deck notes say 74% -> 97%", "used": "No", "why": "74% is the announced manual walk score (BRD says not comparable); 96.6% is the packing pilot cameras in their best week (recomputed: K1_packing_best). Client rejected this in writing."},
+       {"claim": "61% in first two weeks, 78% in week five", "where": "05_meetings PoC review (17 Apr)", "used": "Context only", "why": "PoC: 12 cameras, different scope and window; not the BRD baseline."},
+       {"claim": "Manual walk score 73.8% (882 people)", "where": "BRD v2 §4; recomputed from 07_data walks file", "used": "Context only", "why": "Announced walks (23 of 103 remarks say so), 2 per day, one area; BRD records it 'for reference only'."},
+       {"claim": "All-camera line fell from 93.6% to about 86% in August", "where": "10_media dashboard export; QBR", "used": "Explained, not hidden", "why": "Mix effect: added cameras start low (72% in their first week). Pilot cohort never dropped below 92%."}
+     ]},
+    {"id": "K2", "name": "Restricted-zone breaches (conveyor tail pulleys, kiln hot zone)", "definition": "Entries of a tracked person's feet into a zone polygon for > 2 s, per 1,000 camera-hours of usable video, pilot cameras.",
+     "baseline": "K2_base", "baseline_window": "pilot weeks 1-2", "window": "Last 4 pilot weeks; re-measured on pilot cameras for the last 4 weeks to 27 Sep", "method": "sum(breaches) / sum(camera_hours) x 1,000",
+     "finals": [["K2_result", "pilot result (BRD window)"], ["K2_change_pct", "vs baseline at pilot end"], ["K2_post", "pilot cameras, Sep"], ["K2_post_change", "vs baseline, Sep"]],
+     "target": "−50% (BRD v2; proposal had promised −70%)", "status": "NOT MET at pilot end (−46%). Condition met by September (−77%) after the client installed physical guards on 12 Aug and the vendor added a 2 m pre-zone warning.",
+     "contributors": "Mostly the client's physical guards (engineering control). Vendor: detection, pre-zone warning, evidence for where guards were needed.",
+     "worth": "Report as 'missed at pilot end, then fixed together'. Do not credit software alone with −77%.",
+     "disagreements": [
+       {"claim": "'Restricted zone entries down by half' (1 Jul)", "where": "06_email/E vendor email", "used": "No", "why": "Was −46% against a −50% target; client asked to say that."},
+       {"claim": "'Now 2.7, about minus 50%' (26 Jun)", "where": "05_meetings steering committee", "used": "No", "why": "Single week, before pilot end; BRD window is last 4 weeks."}
+     ]},
+    {"id": "K3", "name": "Alert acknowledgement time", "definition": "Minutes from alert to acknowledgement by the area in-charge.",
+     "baseline": "K3_base", "baseline_window": "pilot weeks 1-2 (BRD says n/a; shown for context)", "window": "Last 4 pilot weeks; re-measured last 4 weeks to 27 Sep",
+     "method": "Alert-weighted mean of weekly zone medians (the library has no alert-level data, so a true median cannot be computed). This reproduces the certificate's 4.9 and 3.5.",
+     "finals": [["K3_result", "pilot (BRD window)"], ["K3_final_week", "final pilot week"], ["K3_post_pilot", "pilot cameras, Sep"], ["K3_post_all", "all cameras, Sep"]],
+     "target": "≤ 3.0 min (BRD v2; proposal had promised 2)", "status": "NOT MET at pilot end (4.9 min; the outage week inflated it). Met by September after the client's control-room phone rule (escalation live 4 Aug).",
+     "contributors": "Client: control room phones the in-charge after 5 minutes. Vendor: alerts routed to the area in-charge, escalation hook, daily camera health message after the outage.",
+     "worth": "Response time is what the sponsor said he was buying ('response time, not logins').",
+     "disagreements": [
+       {"claim": "'Alert response 9 min -> 2 min'", "where": "12_vendor sales deck notes", "used": "Partly", "why": "Direction right; baseline is 8.6 (alert-weighted, weeks 1-2) and 2.1 is the pilot cohort in Sep; must name the phone rule as a cause."},
+       {"claim": "'Under 4 minutes' (1 Jul)", "where": "06_email/E", "used": "No", "why": "Last-4-week figure was 4.9."}
+     ]},
+    {"id": "K4", "name": "False alarms", "definition": "Share of alerts marked false in the EHS daily sample review, scaled to the week (EHS labels, not model confidence, since 3 Jun).",
+     "baseline": "K4_base", "baseline_window": "pilot weeks 1-2 (BRD says n/a; PoC was 23%)", "window": "Last 2 pilot weeks", "method": "sum(alerts_false_verified) / sum(alerts_raised)",
+     "finals": [["K4_result", "pilot (BRD window)"], ["K4_kiln_last2", "kiln hot-zone cameras"], ["K4_post_all", "all cameras, Sep"]],
+     "target": "< 10% (BRD v2; proposal had promised 5%)", "status": "MET, narrowly (9.7%). Kiln hot-zone still above 10% at pilot end (12.1%).", "contributors": "Vendor retrain on 4,200 site frames on an on-premise box; client EHS labelled the sample.",
+     "worth": "This is the number that kept the project alive: the Head EHS said 23% 'is how a system dies'.", "disagreements": []},
+    {"id": "K5", "name": "Truck turnaround at the gate (added by CR-03)", "definition": "Average minutes from gate-in to gate-out per truck.",
+     "baseline": "gate_manual_mean", "baseline_window": "manual gate register 1 Jun-2 Aug (handwritten, rounded to 5 min, 6 days missing) - the contract baseline",
+     "window": "Camera data 25 Aug-30 Sep (excl. 11 Sep calibration day)", "method": "Mean of daily averages",
+     "finals": [["gate_anpr_slots", "dispatch-slot period"], ["K5_change_vs_register", "vs contract baseline"], ["gate_like_for_like", "vs first 2 weeks of camera data (like-for-like)"]],
+     "target": "−15% by end Sep", "status": "MET on either basis. Quote the like-for-like −24% externally: the register baseline is not comparable.",
+     "contributors": "Client gate-infrastructure upgrade (commissioned 18 Aug; ~6 min) and client logistics' dispatch slots run from the queue view (~16 min). Vendor: the queue view and alerts that made slots possible. The vendor itself says the split cannot be made cleanly.",
+     "worth": "Shared credit. The gate dashboard alone (3-17 Aug) did not move turnaround much.",
+     "extra_metrics": ["gate_manual_missing", "gate_anpr_first", "gate_anpr_wb", "gate_step_infra", "gate_step_slots"],
+     "disagreements": [{"claim": "'June-July manual register said 93 or 94'", "where": "QBR", "used": "As contract baseline only", "why": "Handwritten, rounded to 5 minutes, missing days; method changed on 3 Aug."}]},
+    {"id": "MONEY", "name": "Money: transporter detention (the only measured money)", "definition": "Detention paid to transporters per month, from the client's ERP (finance).",
+     "baseline": "det_junjul", "baseline_window": "Jun-Jul average", "window": "September (partly estimated to month end)", "method": "From finance value note; no raw ERP data in the library",
+     "finals": [["det_sep", "September"], ["det_change_pct", "change"]],
+     "target": "None set", "status": "Measured, one month only. Finance credits the project with 'a share', not a number.",
+     "contributors": "Client gate-infrastructure upgrade (own investment) and dispatch slots; vendor queue view.",
+     "worth": "Client finance's own view: payback a little over two years if half of the detention saving is credited; under 14 months only if the full saving holds AND the insurance premium falls. Benchmark '2 crore' and '2.3 crore' figures are not used: finance rejected them. Avoided-injury savings are not claimed. Insurance is 'possible, not realised'.",
+     "extra_metrics": ["spend_total"], "disagreements": [
+       {"claim": "'Rs 2.3 Cr annual savings' incl. Rs 88 L avoided LTIs and Rs 30 L benchmark productivity", "where": "12_vendor sales deck notes", "used": "No", "why": "Finance: 'We should not claim avoided LTIs as savings'; benchmark rejected at steering committee."},
+       {"claim": "'About Rs 2 crore a year' (benchmark)", "where": "05_meetings steering committee", "used": "No", "why": "Finance refused it."}]},
+    {"id": "PEOPLE", "name": "What the users say", "definition": "Paper survey of 18 shift supervisors run by EHS, 14-16 Sep, 1-5 scale.",
+     "baseline_text": "none (single survey)", "window": "14-16 Sep 2026", "method": "Means and counts",
+     "finals": [["survey_useful", "alerts useful"], ["survey_noise", "noise"], ["survey_yes", "would recommend (of 18)"]],
+     "status": "Positive, with a data-quality caveat: 4 of the 18 comments repeat earlier comments word for word (rows S15-S18 copy S01-S04), so quote comments only from S01-S14 and treat the scores with care.",
+     "contributors": "-", "worth": "Supports the user story; not a KPI.", "extra_metrics": ["survey_n", "survey_dups"], "disagreements": []},
+    {"id": "SAFETY", "name": "Injuries (deliberately not claimed)", "definition": "Lost-time injuries from the EHS register.",
+     "baseline": "lti_2025", "baseline_window": "calendar 2025", "window": "Mar-Sep 2026", "method": "Sum of monthly register",
+     "finals": [["lti_mar_sep_2026", "Mar-Sep 2026"]], "status": "NOT CLAIMED. Seven months at roughly one LTI per quarter is not evidence; the client (EHS and finance) said so in writing. Near-miss reports rose, but alerts became loggable as near-misses from 15 Jun, so the rise is partly a definition change.",
+     "contributors": "-", "worth": "Zero in external material.", "extra_metrics": ["nearmiss_pre", "nearmiss_post"], "disagreements": [
+       {"claim": "'Zero LTIs since go-live' / 'zero accidents'", "where": "06_email/E, 06_email/H, sales deck", "used": "No", "why": "Client: 'proves nothing and the auditors will laugh at it'."}]}
+  ],
+
+  "identifiers": [
+    {"term": "Ardent Cement Works", "aliases": ["Ardent", "ACWL", "ACW", "ardentcement"], "category": "client name / logo", "replacement": "an Indian cement manufacturer", "rule": "MSA 15.1, 15.2(a)"},
+    {"term": "Bhadrapur", "aliases": ["BHD"], "case_sensitive": true, "category": "plant / location", "replacement": "the plant", "rule": "MSA 15.2(b); client QBR condition"},
+    {"term": "Chhattisgarh", "aliases": ["Odisha", "Madhya Pradesh", "central India", "eastern and central India", "Mumbai"], "category": "state / region / city", "replacement": "India (country level only)", "rule": "MSA 15.2(b)"},
+    {"term": "Jharsa", "aliases": ["Kotri"], "category": "other client units (reveals plant count)", "replacement": "omit", "rule": "MSA 15.2(b),(c)"},
+    {"term": "Drishti", "aliases": ["drishti"], "category": "client's internal project name (also in a public post)", "replacement": "the project", "rule": "MSA 14.1; combination with public LinkedIn post"},
+    {"term": "6.2 MTPA", "aliases": ["6.2 million-tonne", "MTPA", "million-tonne", "clinker_line_capacity_mtpa"], "category": "production capacity", "replacement": "a large integrated plant (no figure)", "rule": "MSA 15.2(c); 14.1"},
+    {"term": "146", "aliases": ["146/146", "106 cameras"], "category": "exact camera estate size", "replacement": "plant-wide, on existing cameras", "rule": "Combination risk (with industry + region); MSA 14.1 plant layout"},
+    {"term": "Hikvision", "aliases": ["CP Plus", "DS-2CD2T47G2"], "category": "client's suppliers", "replacement": "existing CCTV of mixed makes", "rule": "MSA 14.1 (identity of suppliers)"},
+    {"term": "SAP", "case_sensitive": true, "aliases": ["sap-pi"], "category": "client internal system", "replacement": "the client's ERP", "rule": "MSA 14.1"},
+    {"term": "weighbridge", "aliases": ["weighbridge 2", "second weighbridge", "Weighbridge"], "category": "public press release links this to the plant", "replacement": "a separate client investment in gate infrastructure", "rule": "Combination risk with 11_public press release (12 Aug)"},
+    {"term": "Arvind Rao", "aliases": ["A. Rao", "Arvind"], "category": "client person", "replacement": "the first sponsor (Head of EHS)", "rule": "MSA 14.1; personal data"},
+    {"term": "Rajiv Bhandari", "aliases": ["R. Bhandari", "Rajiv"], "category": "client person", "replacement": "the unit head", "rule": "MSA 14.1"},
+    {"term": "Meenakshi Iyer", "aliases": ["Meenakshi"], "category": "client person", "replacement": "the Head of EHS", "rule": "MSA 14.1; public post links her to the client"},
+    {"term": "Farhan Siddiqui", "aliases": ["Farhan"], "category": "client person", "replacement": "the head of IT and OT security", "rule": "MSA 14.1"},
+    {"term": "Pooja Menon", "aliases": ["Pooja"], "category": "client person", "replacement": "corporate legal", "rule": "MSA 14.1"},
+    {"term": "Sunil Kedia", "aliases": ["Sunil"], "category": "client person", "replacement": "the plant finance head", "rule": "MSA 14.1"},
+    {"term": "Lokesh Jain", "aliases": ["Lokesh"], "category": "client person", "replacement": "procurement", "rule": "MSA 14.1"},
+    {"term": "Ritu Saxena", "category": "client person", "replacement": "corporate communications", "rule": "MSA 14.1"},
+    {"term": "Dinesh Patel", "aliases": ["Ravi K", "Mahto", "S. Verma", "R. Kujur", "Manoj"], "category": "client staff / contractor names", "replacement": "a shift in-charge / a gang leader", "rule": "MSA 14.1; personal data"},
+    {"term": "Suraksha Saptah", "category": "client internal programme name", "replacement": "a plant safety week", "rule": "Internal jargon (brief)"},
+    {"term": "Zero Harm by 2028", "aliases": ["fourth-largest"], "category": "public annual-report phrases", "replacement": "omit", "rule": "Combination risk with 11_public"},
+    {"term": "B+", "aliases": ["C rating"], "category": "internal audit rating", "replacement": "an improved provisional rating in the company's safety pre-assessment", "rule": "MSA 14.1; needs explicit approval"},
+    {"term": "PK2-07", "aliases": ["CV-TP-03", "KL-IN-01", "NVR-2", "NVR-3", "Packer 2B", "PK1-02", "PK3-01"], "category": "camera / equipment IDs", "replacement": "omit", "rule": "MSA 14.1 (plant layout)"},
+    {"term": "ardent-drishti-edge", "aliases": ["predco-delivery", "zones_bhadrapur", "site_bhadrapur"], "category": "repository / config names", "replacement": "omit", "rule": "Brief: repository names"},
+    {"term": "4500128773", "aliases": ["4500131902", "4500135510", "ACWL-BHD-EHS-2026-07", "CAPEX/BHD/26-27/014"], "category": "PO / RFQ / capex numbers", "replacement": "omit; deal size as a band only", "rule": "MSA 14.1 (commercial terms)"}
+  ],
+
+  "combination_risks": [
+    {"combo": "Cement + India + truck gate + a second weighbridge commissioned in August", "why": "The client's own press release (12 Aug) announces exactly this at the plant.", "decision": "Never mention the weighbridge or its month; say 'a separate client investment in gate infrastructure'.", "rule": "15.2(a),(b)"},
+    {"combo": "Head of EHS quote 'told us the uncomfortable number first' + cement + AI cameras", "why": "It is word-for-word from her public LinkedIn post, which names the client, the plant and the vendor; one search identifies the client.", "decision": "Do not quote the public post. Use private-meeting quotes only, attributed to a role.", "rule": "15.2(a)"},
+    {"combo": "Project name 'Drishti' + cement + safety", "why": "The public post and its hashtags use the name.", "decision": "Never use the project name.", "rule": "14.1"},
+    {"combo": "Plant capacity + listed company + region + 'fourth-largest'", "why": "Annual report lists three units with capacities; any capacity figure narrows to one plant.", "decision": "No capacity, no region, no rank, no number of plants.", "rule": "15.2(b),(c)"},
+    {"combo": "Exact camera count (146) + camera makes + cement", "why": "Specific to one site; makes are supplier identities.", "decision": "Say 'existing cameras, plant-wide'; pilot size (40) is generic enough.", "rule": "14.1"},
+    {"combo": "Audit rating letters (C to B+) + company safety programme + group LTIFR in annual report", "why": "Ratings and LTI counts are safety records (14.1) and can be matched to published group safety data.", "decision": "No rating letters, no LTI counts, no LTIFR; describe as 'improved provisional rating' only with explicit approval.", "rule": "14.1"},
+    {"combo": "Exact dates (go-live, leadership change in April) + the public post ('six months ago I joined')", "why": "Timeline can be matched to the post.", "decision": "Use weeks and months relative to go-live, not calendar dates; describe the sponsor change without dates.", "rule": "15.2(a)"},
+    {"combo": "Award nomination that named the client", "why": "Submitted without approval and withdrawn; any mention re-exposes it.", "decision": "Never mention the award.", "rule": "15.1"},
+    {"combo": "A competitor plant 40 km away", "why": "The sponsor's stated fear; regional cues let a neighbour recognise the plant.", "decision": "No regional or climate cues (heat, dust are generic to cement and allowed).", "rule": "15.2(b)"}
+  ],
+
+  "media_review": [
+    {"file": "10_media/cam_PK2-07_alert_snapshot_2026-06-29.jpg", "visible": "Client signboard 'ARDENT CEMENT WORKS / BHADRAPUR UNIT - PACKING PLANT 2', company initials on helmets, people, camera ID, plant IP address, timestamp", "decision": "REJECT. Also: images may not leave the client's network (14.3). Replaced by redrawn charts; no photo used.", "rule": "15.2(d); 14.1; 14.3"},
+    {"file": "10_media/dashboard_export_ppe_weekly_2026-09-25.png", "visible": "Project and client name in title, internal console URL and IP, vendor user email; shows the all-camera dip without explanation", "decision": "REJECT. Redrawn as cohort chart from recomputed data.", "rule": "14.1; brief: URLs on screen"},
+    {"file": "10_media/architecture_as_built_revC.png", "visible": "Client and plant name, server IPs, console URL, VLAN number, camera makes, author name", "decision": "REJECT. Redrawn as a generic architecture with no addresses or names.", "rule": "14.1; brief: URLs, names in diagrams"}
+  ],
+
+  "do_not_use": [
+    {"item": "Any line from the April review about the Head of EHS's previous plant (gas alarms)", "who": "Head of EHS, private email 28 Sep", "source": "06_email/H_2026-09-24_to_09-30_case_study_permission.md"},
+    {"item": "Quotes from the public LinkedIn post", "who": "Exposure rule (links client publicly)", "source": "09_feedback/linkedin_post_2026-09-30_Meenakshi_Iyer.md"},
+    {"item": "The withdrawn award nomination", "who": "Corporate Legal", "source": "12_vendor/vendor_profile_team_achievements.md"},
+    {"item": "The unreviewed sales-deck numbers (97%, zero accidents, Rs 2.3 Cr, logo strip, packer snapshot)", "who": "Fact-checker (fail) and client emails", "source": "12_vendor/sales_deck_draft_notes_2026-09-23.md"},
+    {"item": "Contents of the Head of EHS's private note (the 'wait for the audit' advice)", "who": "Sent privately to the account director", "source": "06_email/H_2026-09-24_to_09-30_case_study_permission.md"}
+  ],
+
+  "do_not_claim": [
+    {"claim": "Compliance 'from 74% to 97%' (or 96.6%)", "pattern": "74\\s?%\\s*(?:to|->|→|-)\\s*9[67]|\\b97\\s?%|96\\.6", "why": "Mixes the announced walk score with the best packing week", "source": "06_email/E"},
+    {"claim": "Zero LTIs / zero accidents as a result", "pattern": "zero\\s+(?:lti|lost[- ]time|accident|injur|harm)|no\\s+(?:lti|lost[- ]time injur)\\w*\\s+since", "why": "Seven months proves nothing; client refused it", "source": "06_email/E; 05_meetings QBR"},
+    {"claim": "Avoided or prevented injuries, or their money value", "pattern": "(?:avoid|prevent)\\w*\\s+(?:\\w+\\s+){0,2}(?:lti|lost[- ]time|injur|accident)", "why": "Finance: do not claim avoided LTIs as savings", "source": "06_email/G"},
+    {"claim": "Benchmark savings (Rs 2 Cr, Rs 2.3 Cr)", "pattern": "2\\.3\\s?cr|two crore|2\\s?crore|crore", "why": "Finance rejected benchmark returns", "source": "05_meetings steering committee"},
+    {"claim": "'Cement major' / 'leading' / market rank", "pattern": "cement major|leading\\s+\\w*\\s*cement|top\\s+\\w+\\s+cement|largest", "why": "With the numbers, anyone in the industry knows who it is", "source": "06_email/H"},
+    {"claim": "Restricted-zone entries 'halved' during the pilot", "pattern": "halved|by half", "why": "It was −46% against −50% at pilot end", "source": "06_email/E"},
+    {"claim": "Insurance premium reduced", "pattern": "(?:insurance|premium)\\s+\\w*\\s*(?:fell|fallen|reduced|cut|lower|saving)", "why": "Possible, not realised", "source": "06_email/G"},
+    {"claim": "The whole gate improvement as the vendor's", "pattern": "(?:our|the system's|the software's)\\s+(?:\\w+\\s+){0,3}(?:cut|reduced|halved)\\s+(?:truck\\s+)?turnaround", "why": "Client gate investment and logistics slots contributed; finance credits 'a share'", "source": "05_meetings QBR; 06_email/G"},
+    {"claim": "SOC 2 covers the on-premises deployment", "pattern": "SOC\\s?2\\s+(?:\\w+\\s+){0,3}(?:covers|certifies)\\s+(?:the\\s+)?(?:on[- ]prem|deployment|site)", "why": "IT-OT pointed out the SOC 2 report covers company controls, not the on-prem deployment", "source": "06_email/B"}
+  ],
+
+  "media": {
+    "cohort_chart": {"file": "chart_compliance_cohorts.png", "label": "Chart drawn from recomputed project data (not a screenshot)", "reader": "Buyer and user", "why": "Answers the dashboard 'dip' honestly: new areas start low, pilot areas hold",
+      "sources": ["07_data/viewos_weekly_zone_metrics.csv"],
+      "title": "PPE compliance seen by the cameras, week by week", "subtitle": "Share of people observed wearing both helmet and vest (one person per camera per 10 minutes)",
+      "x_label": "Week since pilot go-live", "y_label": "% compliant", "ylim": [55, 100],
+      "footer": "Source: weekly camera export, recomputed. Pilot = first 40 cameras. Areas added later start low, as the pilot areas did. Drawn by the vendor from project data; no site images.",
+      "target": {"value": 90, "label": "Pilot target"},
+      "annotations": [{"at": "2026-06-15", "text": "On-site retrain"}, {"at": "2026-07-06", "text": "New areas added"}],
+      "series": [
+        {"label": "Pilot areas (40 cameras)", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "group_by": "week_start", "filter": {"camera_cohort": "pilot"}},
+        {"label": "Areas added after the pilot", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "group_by": "week_start", "filter": {"camera_cohort": "scale"}},
+        {"label": "All cameras", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "ppe_compliant", "denominator": "persons_observed", "scale": 100, "group_by": "week_start", "filter": {}}
+      ]},
+    "phase_chart": {"file": "chart_gate_turnaround.png", "label": "Chart drawn from project data; causes labelled", "reader": "Buyer and gatekeeper", "why": "Shows the gate result with shared credit visible, so finance can defend it",
+      "sources": ["07_data/gate_truck_turnaround_daily.csv"],
+      "title": "Truck turnaround at the gate: what moved it", "subtitle": "Average minutes from gate-in to gate-out, by day",
+      "x_label": "Day of the 4-month window", "y_label": "Minutes", "ylim": [40, 130],
+      "footer": "Grey: handwritten register, rounded, some days missing (not comparable). Blue/orange: camera data. The biggest drop came after the client's logistics team began dispatch slots run from the queue view. One calibration day excluded from that average.",
+      "series": {"dataset": "gate", "op": "value", "column": "avg_turnaround_min", "group_by": "date", "filter": {}},
+      "phases": [
+        {"from": "2026-06-01", "to": "2026-08-02", "metric": "gate_manual_mean", "label": "Manual register"},
+        {"from": "2026-08-03", "to": "2026-08-17", "metric": "gate_anpr_first", "label": "Queue analytics live", "dots": true},
+        {"from": "2026-08-18", "to": "2026-08-24", "metric": "gate_anpr_wb", "label": "Client gate upgrade", "dots": true},
+        {"from": "2026-08-25", "to": "2026-09-30", "metric": "gate_anpr_slots", "label": "Client dispatch slots", "dots": true}
+      ]},
+    "architecture": {"file": "architecture_generic.png", "label": "Illustration: generic redrawn architecture, no addresses or names", "reader": "Gatekeeper", "why": "IT security's first question is where the data goes",
+      "sources": ["01_contract (Annexure D)", "06_email/B", "08_github/README.md"],
+      "title": "Where the video goes: nowhere outside the plant", "subtitle": "Illustration of the deployment pattern (redrawn; not the site drawing)",
+      "boundary": "Plant OT network - no internet egress", "footer": "Updates arrive as signed packages installed by the client's IT team. Vendor access only through the client's jump host, session recorded and approved per session.",
+      "boxes": [
+        {"id": "cams", "xywh": [4, 31, 17, 13], "title": "Existing CCTV", "body": "Security cameras already\non site, mixed makes\n(no new cameras)"},
+        {"id": "edge", "xywh": [28, 31, 17, 13], "title": "Edge GPU servers", "body": "Person / helmet / vest\n/ zone detection\nin the server room"},
+        {"id": "console", "xywh": [52, 31, 18, 13], "title": "Plant console", "body": "Alert snapshots viewed\nhere only; video 30 d,\nsnapshots 180 d"},
+        {"id": "phone", "xywh": [78, 31, 19, 13], "inside": false, "title": "In-charge's phone", "body": "Text-only alert:\n'No helmet, area, time'\n(no image leaves)"},
+        {"id": "jump", "xywh": [28, 8, 17, 13], "title": "Client jump host", "body": "Vendor access approved\nper session, recorded;\nsigned update packages"},
+        {"id": "gate", "xywh": [52, 8, 18, 13], "title": "Gate analytics", "body": "Number-plate cameras\njoined with the ERP\ngate feed; queue view"}
+      ],
+      "arrows": [["cams", "edge", "video"], ["edge", "console", "alerts"], ["console", "phone", "text only"], ["jump", "edge", ""], ["gate", "console", ""]]},
+    "one_slide": {"file": "case_study_slide.pptx", "label": "One slide for the sales deck (draft)", "reader": "Buyer", "why": "One headline number, one chart, shared credit",
+      "sources": ["metrics", "evidence ledger"],
+      "kicker": "Case study (anonymised) | Indian cement manufacturer | AI safety on existing CCTV",
+      "headline": "Real PPE compliance rose from 69% to 91% in an eight-week pilot [M:K1_base] [M:K1_result] [E:c1]",
+      "bullets": [
+        "Restricted-zone entries down 77% after the client added guards the camera data pointed to [M:K2_post_change] [E:e57]",
+        "Alerts acknowledged in about 2 minutes, down from nearly 9 [M:K3_post_pilot] [M:K3_base]",
+        "False alarms under 10% on the client's own sample review, down from 20% [M:K4_result] [M:K4_base]",
+        "Truck turnaround down 24% on like-for-like data, credit shared with the client's own gate changes [M:gate_like_for_like] [E:e65]",
+        "No video left the plant network: on-premises, no internet egress [E:e86b]"
+      ],
+      "footer": "Anonymised draft pending client approval. Every figure traces to the project record. {framing}"},
+    "roi_calculator": {"file": "gate_payback_calculator.html", "label": "Interactive calculator; reader enters their own numbers", "reader": "Buyer (and finance)", "why": "Lets a buyer test payback on their own detention costs instead of trusting ours",
+      "sources": ["metrics det_change_pct"],
+      "title": "Gate payback calculator", "intro": "Enter your own figures. Nothing is sent anywhere; the page calculates in your browser.",
+      "measured_line": "Detention charges fell 68% from the June-July average to September, with the client's own gate changes contributing [M:det_change_pct] [E:e71]",
+      "note": "The reference client's finance team credits the system with 'a share' of the saving, not all of it, and treats one month as not yet a trend. Set the share accordingly.",
+      "fields": [
+        {"id": "cost", "label": "Your monthly truck detention cost", "placeholder": "e.g. from your ERP"},
+        {"id": "reduction", "label": "Reduction you expect, % (reference project: 68% in its first full month)", "default": 68},
+        {"id": "share", "label": "Share you credit to the system, %", "default": 50},
+        {"id": "project", "label": "Your expected project cost (same currency)", "placeholder": "total"}
+      ]}
+  },
+
+  "approval": {
+    "reference": "CS-2026-001 (anonymised case study, cement safety analytics)",
+    "planned_send_date": "2026-11-02",
+    "review_business_days": 10,
+    "holidays": ["2026-11-09", "2026-11-10"],
+    "to": "Ritu Saxena, Corporate Communications",
+    "cc": "Pooja Menon, Corporate Legal; Meenakshi Iyer, Head EHS; Rajiv Bhandari, Unit Head",
+    "from": "Sana Qureshi, Delivery Manager, PredCo",
+    "subject": "For your review under MSA clause 15.2(e): anonymised case study draft (nothing published without your written yes)",
+    "message": [
+      "Dear Ritu,",
+      "",
+      "As Pooja asked on 28 September, here is the complete pack for the anonymised case study about the safety-camera project: the full text, every chart and image, and a list of every number with the record it comes from. Nothing has been published or shared outside PredCo, and nothing will be without your written approval.",
+      "",
+      "What we have done to protect the company:",
+      "- The company appears only as \"an Indian cement manufacturer\". No plant name, state, capacity, number of plants, headcount, camera count, project name or people's names.",
+      "- No photos or screenshots from site. The three images are charts and a diagram we redrew from scratch, with no addresses, logos or metadata.",
+      "- Only numbers measured the way your BRD defines them, with the targets we missed shown as missed. No injury claims, no savings estimates beyond what your finance team measured, and credit shared for what your own teams did (guards, phone rule, dispatch slots, safety week).",
+      "",
+      "The one-page approval sheet gives you four choices: anonymised, named later (once you are ready and on a fresh review), internal use only, or no. You can strike any line or number, and you can withdraw approval at any time.",
+      "",
+      "If it helps, we can walk Corporate Communications and Legal through it in 20 minutes on a call of your choosing."
+    ],
+    "signoff": ["Regards,", "Sana Qureshi, Delivery Manager, PredCo", "(Pack reviewed internally before sending, per our case-study process.)"],
+    "options": [
+      {"id": "A", "name": "Anonymised", "means": "Described only as 'an Indian cement manufacturer'. Nothing below country level; no capacity, plant count or headcount; no images of premises, people, vehicles or signage (clause 15.2)", "publishes": "The attached text and media, exactly as approved, on PredCo's website, LinkedIn and sales deck"},
+      {"id": "B", "name": "Named, later", "means": "Your company named, only when your leadership wishes and after a fresh review of an updated pack (clause 15.1)", "publishes": "Nothing now; a new pack will be sent for approval"},
+      {"id": "C", "name": "Internal use only", "means": "Used only inside PredCo for training and delivery lessons; never shown to anyone outside PredCo", "publishes": "Nothing outside PredCo"},
+      {"id": "D", "name": "No", "means": "We do not use it in any form", "publishes": "Nothing"}
+    ],
+    "signatory_roles": ["Corporate Communications (authorised signatory)", "Corporate Legal (in copy; confirms)", "Head EHS (fact check, optional)"],
+    "changes_made": [
+      {"what": "Company described only as 'an Indian cement manufacturer'", "why": "No name, logo or rank", "rule": "MSA 15.1, 15.2(a)"},
+      {"what": "No plant, state, region or city; no other units", "why": "Location below country level", "rule": "MSA 15.2(b)"},
+      {"what": "No capacity, number of plants, headcount or exact camera count", "why": "Each narrows to one plant", "rule": "MSA 15.2(c); 14.1"},
+      {"what": "No site photo, screenshot or drawing; three new charts/diagram redrawn with metadata removed", "why": "The originals show your signboard, logo, people, IP addresses and GPS location in the file", "rule": "MSA 15.2(d); 14.3"},
+      {"what": "The second weighbridge is described only as 'a separate client investment in gate infrastructure'", "why": "Your 12 Aug press release would identify the plant", "rule": "Combination risk"},
+      {"what": "No quotes from the public LinkedIn post; quotes attributed to roles only", "why": "The post names the company and project", "rule": "Combination risk; 14.1"},
+      {"what": "No project name, internal programme names, system names, supplier names or audit rating letters", "why": "Internal and identifying", "rule": "MSA 14.1"},
+      {"what": "No injury counts, no 'zero accidents', no avoided-injury savings, no benchmark savings", "why": "Your EHS and finance teams said these cannot be defended", "rule": "Accuracy; 14.1 (safety records)"},
+      {"what": "Missed pilot targets shown as missed (zones −46% vs −50%; acknowledgement 4.9 vs 3.0 min) and how they were fixed", "why": "Your BRD definitions only", "rule": "Accuracy"},
+      {"what": "Calendar dates replaced by weeks/months relative to go-live", "why": "Dates can be matched to public posts", "rule": "Combination risk"}
+    ],
+    "gate": {"internal_reviewer_roles": ["Head of Delivery", "Head of Legal & Compliance"], "authors": ["engine operator"], "client_departments": ["Corporate Communications"]}
+  }
+}

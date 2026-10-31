@@ -1,0 +1,25 @@
+{
+  "project_label": "Mini test project (synthetic)",
+  "library": "../mini_library",
+  "industry": "software",
+  "vendor": "TestVendor",
+  "anonymised_name": "a European logistics company",
+  "anonymised_title": "A European logistics company speeds up invoices",
+  "contract_basis": "contract.md",
+  "datasets": {"weekly": "data/weekly.csv"},
+  "metrics": [
+    {"id": "base", "name": "Hours per invoice before", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "hours_total", "denominator": "invoices", "filter": {"week": {"between": ["2026-02-01", "2026-02-28"]}}},
+    {"id": "after", "name": "Hours per invoice after", "dataset": "weekly", "op": "ratio_of_sums", "numerator": "hours_total", "denominator": "invoices", "filter": {"week": {"between": ["2026-04-01", "2026-04-30"]}}},
+    {"id": "change", "name": "Change", "op": "expr", "expr": "100 * (a - b) / b", "inputs": {"a": "after", "b": "base"}, "unit": "%", "decimals": 0}
+  ],
+  "results": [{"id": "R1", "name": "Invoice effort", "definition": "hours / invoices", "baseline": "base", "baseline_window": "Feb", "window": "Apr", "method": "ratio of sums", "finals": [["after", "after"], ["change", "change"]]}],
+  "identifiers": [{"term": "Northwind Freight", "aliases": ["Northwind", "Dana Lee"], "category": "client name", "replacement": "a European logistics company", "rule": "contract"}],
+  "media": {},
+  "approval": {
+    "reference": "TEST-1", "planned_send_date": "2026-05-04", "review_business_days": 5, "holidays": [],
+    "to": "Client comms", "cc": "Client legal", "from": "Vendor", "subject": "Review", "message": ["Please review."], "signoff": ["Vendor"],
+    "options": [{"id": "A", "name": "Anonymised", "means": "no name", "publishes": "text"}],
+    "signatory_roles": ["Comms"], "changes_made": [],
+    "gate": {"internal_reviewer_roles": ["Head of Delivery"], "authors": [], "client_departments": ["Corporate Communications"]}
+  }
+}

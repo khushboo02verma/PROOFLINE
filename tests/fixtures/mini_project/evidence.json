@@ -1,0 +1,5 @@
+[
+{"id":"m1","date":"2026-01-10","kind":"request","actor":"Client ops lead","summary":"Client wants faster invoice processing","file":"mail/2026-01-10_kickoff.md","quote":"We want to cut invoice processing time."},
+{"id":"m2","date":"2026-04-02","kind":"event","actor":"Client ops lead","summary":"Go-live","file":"mail/2026-04-02_golive.md","quote":"Go-live done today."},
+{"id":"m3","date":"2026-01-01","kind":"fact","actor":"Contract","summary":"Anonymisation rule","file":"contract.md","quote":"a European logistics company"}
+]

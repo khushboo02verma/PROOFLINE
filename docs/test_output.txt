@@ -1,0 +1,15 @@
+test_01_every_evidence_quote_is_in_its_file (tests.test_engine.DrishtiRun.test_01_every_evidence_quote_is_in_its_file) ... ok
+test_02_extractor_refuses_an_invented_quote (tests.test_engine.DrishtiRun.test_02_extractor_refuses_an_invented_quote)
+A quote the model (or a person) made up is refused before it can be used. ... ok
+test_03_kpis_reproduce_the_records (tests.test_engine.DrishtiRun.test_03_kpis_reproduce_the_records) ... ok
+test_04_refuses_untraceable_and_ruled_out_claims (tests.test_engine.DrishtiRun.test_04_refuses_untraceable_and_ruled_out_claims) ... ok
+test_05_case_study_had_no_refusals_and_leaks_nothing (tests.test_engine.DrishtiRun.test_05_case_study_had_no_refusals_and_leaks_nothing) ... ok
+test_06_media_has_no_metadata_and_reuses_no_client_image (tests.test_engine.DrishtiRun.test_06_media_has_no_metadata_and_reuses_no_client_image) ... ok
+test_07_stops_for_a_person_before_anything_leaves (tests.test_engine.DrishtiRun.test_07_stops_for_a_person_before_anything_leaves) ... ok
+test_08_editing_the_pack_after_approval_voids_it (tests.test_engine.DrishtiRun.test_08_editing_the_pack_after_approval_voids_it) ... ok
+test_09_same_engine_runs_on_a_different_library (tests.test_engine.OtherProject.test_09_same_engine_runs_on_a_different_library) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 6.862s
+
+OK

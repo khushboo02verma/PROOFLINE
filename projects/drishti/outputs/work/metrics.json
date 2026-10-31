@@ -1,0 +1,987 @@
+{
+  "K1_base": {
+    "id": "K1_base",
+    "name": "K1 PPE compliance, pilot weeks 1-2",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "in": [
+          "2026-05-11",
+          "2026-05-18"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 8,
+    "value": 68.88029821897004,
+    "working": "sum(ppe_compliant) = 9,978; sum(persons_observed) = 14,486; 100 x 9,978 / 14,486 = 68.8803",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_result": {
+    "id": "K1_result",
+    "name": "K1 PPE compliance, last 4 pilot weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-06-08",
+          "2026-06-29"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 91.08402598309702,
+    "working": "sum(ppe_compliant) = 26,081; sum(persons_observed) = 28,634; 100 x 26,081 / 28,634 = 91.0840",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_change_pts": {
+    "id": "K1_change_pts",
+    "name": "K1 change, percentage points",
+    "op": "expr",
+    "unit": " pts",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 22.20372776412698,
+    "working": "r = K1_result = 91.08; b = K1_base = 68.88 -> r - b = 22.2",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "K1_final_week": {
+    "id": "K1_final_week",
+    "name": "K1 final pilot week (all pilot cameras)",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": "2026-06-29"
+    },
+    "note": "",
+    "rows_used": 4,
+    "value": 93.64270386266094,
+    "working": "sum(ppe_compliant) = 6,982; sum(persons_observed) = 7,456; 100 x 6,982 / 7,456 = 93.6427",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_packing_best": {
+    "id": "K1_packing_best",
+    "name": "Packing pilot cameras, best week (week of 29 Jun)",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "zone": "packing",
+      "week_start": "2026-06-29"
+    },
+    "note": "",
+    "rows_used": 1,
+    "value": 96.59931000492854,
+    "working": "sum(ppe_compliant) = 3,920; sum(persons_observed) = 4,058; 100 x 3,920 / 4,058 = 96.5993",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_post_pilot": {
+    "id": "K1_post_pilot",
+    "name": "PPE compliance, pilot cameras, last 4 weeks (31 Aug-27 Sep)",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 94.41951026334895,
+    "working": "sum(ppe_compliant) = 28,611; sum(persons_observed) = 30,302; 100 x 28,611 / 30,302 = 94.4195",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_post_scale": {
+    "id": "K1_post_scale",
+    "name": "PPE compliance, cameras added after the pilot, last 4 weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "scale",
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 28,
+    "value": 87.2007252135903,
+    "working": "sum(ppe_compliant) = 70,221; sum(persons_observed) = 80,528; 100 x 70,221 / 80,528 = 87.2007",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_post_all": {
+    "id": "K1_post_all",
+    "name": "PPE compliance, all cameras, last 4 weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 44,
+    "value": 89.17441126048904,
+    "working": "sum(ppe_compliant) = 98,832; sum(persons_observed) = 110,830; 100 x 98,832 / 110,830 = 89.1744",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_scale_first": {
+    "id": "K1_scale_first",
+    "name": "PPE compliance, first week of added cameras (week of 6 Jul)",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "scale",
+      "week_start": "2026-07-06"
+    },
+    "note": "",
+    "rows_used": 1,
+    "value": 71.9621513944223,
+    "working": "sum(ppe_compliant) = 1,445; sum(persons_observed) = 2,008; 100 x 1,445 / 2,008 = 71.9622",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_aug_all": {
+    "id": "K1_aug_all",
+    "name": "PPE compliance, all cameras, weeks of 3-24 Aug (the dashboard 'dip')",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "week_start": {
+        "between": [
+          "2026-08-03",
+          "2026-08-24"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 42,
+    "value": 86.7614543363376,
+    "working": "sum(ppe_compliant) = 87,505; sum(persons_observed) = 100,857; 100 x 87,505 / 100,857 = 86.7615",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K1_gate_yard": {
+    "id": "K1_gate_yard",
+    "name": "PPE compliance, gate-yard cameras, last 4 weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "zone": "gate_yard",
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 4,
+    "value": 79.24324324324324,
+    "working": "sum(ppe_compliant) = 13,194; sum(persons_observed) = 16,650; 100 x 13,194 / 16,650 = 79.2432",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K2_base": {
+    "id": "K2_base",
+    "name": "K2 restricted-zone breaches per 1,000 camera-hours, pilot weeks 1-2",
+    "op": "ratio_of_sums",
+    "unit": "",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "in": [
+          "2026-05-11",
+          "2026-05-18"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 8,
+    "value": 5.580357142857143,
+    "working": "sum(restricted_zone_breaches) = 75; sum(camera_hours) = 13,440; 1000 x 75 / 13,440 = 5.5804",
+    "decimals": 2,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K2_result": {
+    "id": "K2_result",
+    "name": "K2 breaches per 1,000 camera-hours, last 4 pilot weeks",
+    "op": "ratio_of_sums",
+    "unit": "",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-06-08",
+          "2026-06-29"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 3.002540611286473,
+    "working": "sum(restricted_zone_breaches) = 78; sum(camera_hours) = 25,978; 1000 x 78 / 25,978 = 3.0025",
+    "decimals": 2,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K2_change_pct": {
+    "id": "K2_change_pct",
+    "name": "K2 change vs baseline",
+    "op": "expr",
+    "unit": "%",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": -46.194472245746404,
+    "working": "r = K2_result = 3.003; b = K2_base = 5.58 -> 100 * (r - b) / b = -46.19",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "K2_post": {
+    "id": "K2_post",
+    "name": "Breaches per 1,000 camera-hours, pilot cameras, last 4 weeks (after guards)",
+    "op": "ratio_of_sums",
+    "unit": "",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 1.2648809523809523,
+    "working": "sum(restricted_zone_breaches) = 34; sum(camera_hours) = 26,880; 1000 x 34 / 26,880 = 1.2649",
+    "decimals": 2,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K2_post_change": {
+    "id": "K2_post_change",
+    "name": "Breaches change vs pilot baseline, after guards",
+    "op": "expr",
+    "unit": "%",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": -77.33333333333334,
+    "working": "r = K2_post = 1.265; b = K2_base = 5.58 -> 100 * (r - b) / b = -77.33",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "K3_base": {
+    "id": "K3_base",
+    "name": "K3 acknowledgement minutes, pilot weeks 1-2 (alert-weighted)",
+    "op": "weighted_mean",
+    "unit": " min",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "in": [
+          "2026-05-11",
+          "2026-05-18"
+        ]
+      }
+    },
+    "note": "Alert-weighted mean of weekly zone medians; reproduces the certificate. A true median needs alert-level data, which is not in the library.",
+    "rows_used": 8,
+    "value": 8.632749562171629,
+    "working": "sum(median_ack_minutes x alerts_raised) / sum(alerts_raised) = 4,929.3 / 571 = 8.6327",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K3_result": {
+    "id": "K3_result",
+    "name": "K3 acknowledgement minutes, last 4 pilot weeks",
+    "op": "weighted_mean",
+    "unit": " min",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-06-08",
+          "2026-06-29"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 4.89719887955182,
+    "working": "sum(median_ack_minutes x alerts_raised) / sum(alerts_raised) = 1,748.3 / 357 = 4.8972",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K3_final_week": {
+    "id": "K3_final_week",
+    "name": "K3 acknowledgement minutes, final pilot week",
+    "op": "weighted_mean",
+    "unit": " min",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": "2026-06-29"
+    },
+    "note": "",
+    "rows_used": 4,
+    "value": 3.5420289855072467,
+    "working": "sum(median_ack_minutes x alerts_raised) / sum(alerts_raised) = 244.4 / 69 = 3.5420",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K3_post_pilot": {
+    "id": "K3_post_pilot",
+    "name": "Acknowledgement minutes, pilot cameras, last 4 weeks (after phone rule)",
+    "op": "weighted_mean",
+    "unit": " min",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 16,
+    "value": 2.0821100917431195,
+    "working": "sum(median_ack_minutes x alerts_raised) / sum(alerts_raised) = 453.9 / 218 = 2.0821",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K3_post_all": {
+    "id": "K3_post_all",
+    "name": "Acknowledgement minutes, all cameras, last 4 weeks",
+    "op": "weighted_mean",
+    "unit": " min",
+    "dataset": "weekly",
+    "filter": {
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 44,
+    "value": 2.3121584699453552,
+    "working": "sum(median_ack_minutes x alerts_raised) / sum(alerts_raised) = 3,385.0 / 1,464 = 2.3122",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K4_base": {
+    "id": "K4_base",
+    "name": "False alarms, pilot weeks 1-2 (EHS sample, scaled)",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "in": [
+          "2026-05-11",
+          "2026-05-18"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 8,
+    "value": 19.78984238178634,
+    "working": "sum(alerts_false_verified) = 113; sum(alerts_raised) = 571; 100 x 113 / 571 = 19.7898",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K4_result": {
+    "id": "K4_result",
+    "name": "K4 false alarms, last 2 pilot weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": {
+        "in": [
+          "2026-06-22",
+          "2026-06-29"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 8,
+    "value": 9.67741935483871,
+    "working": "sum(alerts_false_verified) = 15; sum(alerts_raised) = 155; 100 x 15 / 155 = 9.6774",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K4_kiln_last2": {
+    "id": "K4_kiln_last2",
+    "name": "False alarms, kiln hot-zone cameras, last 2 pilot weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "zone": "kiln",
+      "week_start": {
+        "in": [
+          "2026-06-22",
+          "2026-06-29"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 2,
+    "value": 12.121212121212121,
+    "working": "sum(alerts_false_verified) = 4; sum(alerts_raised) = 33; 100 x 4 / 33 = 12.1212",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "K4_post_all": {
+    "id": "K4_post_all",
+    "name": "False alarms, all cameras, last 4 weeks",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "weekly",
+    "filter": {
+      "week_start": {
+        "between": [
+          "2026-08-31",
+          "2026-09-21"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 44,
+    "value": 6.215846994535519,
+    "working": "sum(alerts_false_verified) = 91; sum(alerts_raised) = 1,464; 100 x 91 / 1,464 = 6.2158",
+    "decimals": 1,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "outage_hours": {
+    "id": "outage_hours",
+    "name": "Usable camera-hours, pilot, week of 8 Jun (outage week)",
+    "op": "sum",
+    "unit": "",
+    "dataset": "weekly",
+    "filter": {
+      "camera_cohort": "pilot",
+      "week_start": "2026-06-08"
+    },
+    "note": "",
+    "rows_used": 4,
+    "value": 5818.0,
+    "working": "sum(camera_hours) over 4 rows = 5,818",
+    "decimals": 0,
+    "source": "07_data/viewos_weekly_zone_metrics.csv"
+  },
+  "outage_lost": {
+    "id": "outage_lost",
+    "name": "Camera-hours lost in outage week (40 cameras x 168 h minus usable)",
+    "op": "expr",
+    "unit": " camera-hours",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 902.0,
+    "working": "u = outage_hours = 5818 -> 40 * 168 - u = 902",
+    "rows_used": 0,
+    "decimals": 0,
+    "source": "evidence ledger"
+  },
+  "walk_compliance": {
+    "id": "walk_compliance",
+    "name": "Manual safety-walk compliance, Q4 2025",
+    "op": "ratio_of_sums",
+    "unit": "%",
+    "dataset": "walks",
+    "filter": {},
+    "note": "",
+    "rows_used": 103,
+    "value": 73.80952380952381,
+    "working": "sum(fully_compliant) = 651; sum(people_observed) = 882; 100 x 651 / 882 = 73.8095",
+    "decimals": 1,
+    "source": "07_data/baseline_manual_safety_walks_2025Q4.csv"
+  },
+  "walk_people": {
+    "id": "walk_people",
+    "name": "People observed on Q4 2025 walks",
+    "op": "sum",
+    "unit": "",
+    "dataset": "walks",
+    "filter": {},
+    "note": "",
+    "rows_used": 103,
+    "value": 882.0,
+    "working": "sum(people_observed) over 103 rows = 882",
+    "decimals": 0,
+    "source": "07_data/baseline_manual_safety_walks_2025Q4.csv"
+  },
+  "walk_count": {
+    "id": "walk_count",
+    "name": "Number of walks in Q4 2025",
+    "op": "count",
+    "unit": "",
+    "dataset": "walks",
+    "filter": {},
+    "note": "",
+    "rows_used": 103,
+    "value": 103,
+    "working": "rows matching filter = 103",
+    "decimals": 0,
+    "source": "07_data/baseline_manual_safety_walks_2025Q4.csv"
+  },
+  "walk_announced": {
+    "id": "walk_announced",
+    "name": "Walks with remark 'announced on shift WhatsApp group'",
+    "op": "count",
+    "unit": "",
+    "dataset": "walks",
+    "filter": {
+      "remarks": {
+        "contains": "announced"
+      }
+    },
+    "note": "",
+    "rows_used": 23,
+    "value": 23,
+    "working": "rows matching filter = 23",
+    "decimals": 0,
+    "source": "07_data/baseline_manual_safety_walks_2025Q4.csv"
+  },
+  "walk_gap": {
+    "id": "walk_gap",
+    "name": "Walk score minus camera baseline (points)",
+    "op": "expr",
+    "unit": " pts",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 4.92922559055377,
+    "working": "w = walk_compliance = 73.81; b = K1_base = 68.88 -> w - b = 4.929",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "gate_manual_mean": {
+    "id": "gate_manual_mean",
+    "name": "Truck turnaround, manual register 1 Jun-2 Aug (K5 baseline)",
+    "op": "mean",
+    "unit": " min",
+    "dataset": "gate",
+    "filter": {
+      "source": {
+        "contains": "manual"
+      },
+      "avg_turnaround_min": {
+        "nonblank": true
+      }
+    },
+    "note": "",
+    "rows_used": 57,
+    "value": 93.50877192982456,
+    "working": "mean(avg_turnaround_min) over 57 non-blank rows = 5,330.0 / 57 = 93.5088",
+    "decimals": 1,
+    "source": "07_data/gate_truck_turnaround_daily.csv"
+  },
+  "gate_manual_missing": {
+    "id": "gate_manual_missing",
+    "name": "Manual-register days with no figure",
+    "op": "count",
+    "unit": "",
+    "dataset": "gate",
+    "filter": {
+      "source": {
+        "contains": "manual"
+      },
+      "avg_turnaround_min": {
+        "blank": true
+      }
+    },
+    "note": "",
+    "rows_used": 6,
+    "value": 6,
+    "working": "rows matching filter = 6",
+    "decimals": 0,
+    "source": "07_data/gate_truck_turnaround_daily.csv"
+  },
+  "gate_anpr_first": {
+    "id": "gate_anpr_first",
+    "name": "Truck turnaround, camera data, 3-17 Aug (before client gate changes)",
+    "op": "mean",
+    "unit": " min",
+    "dataset": "gate",
+    "filter": {
+      "date": {
+        "between": [
+          "2026-08-03",
+          "2026-08-17"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 15,
+    "value": 88.54,
+    "working": "mean(avg_turnaround_min) over 15 non-blank rows = 1,328.1 / 15 = 88.5400",
+    "decimals": 1,
+    "source": "07_data/gate_truck_turnaround_daily.csv"
+  },
+  "gate_anpr_wb": {
+    "id": "gate_anpr_wb",
+    "name": "Truck turnaround, camera data, 18-24 Aug (after client gate-infrastructure upgrade)",
+    "op": "mean",
+    "unit": " min",
+    "dataset": "gate",
+    "filter": {
+      "date": {
+        "between": [
+          "2026-08-18",
+          "2026-08-24"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 7,
+    "value": 82.78571428571429,
+    "working": "mean(avg_turnaround_min) over 7 non-blank rows = 579.5 / 7 = 82.7857",
+    "decimals": 1,
+    "source": "07_data/gate_truck_turnaround_daily.csv"
+  },
+  "gate_anpr_slots": {
+    "id": "gate_anpr_slots",
+    "name": "Truck turnaround, camera data, 25 Aug-30 Sep (dispatch slots), excl. 11 Sep calibration day",
+    "op": "mean",
+    "unit": " min",
+    "dataset": "gate",
+    "filter": {
+      "date": {
+        "between": [
+          "2026-08-25",
+          "2026-09-30"
+        ],
+        "not_in": [
+          "2026-09-11"
+        ]
+      }
+    },
+    "note": "11 Sep excluded: 6 h weighbridge calibration downtime (same exclusion as commit e41c9a2).",
+    "rows_used": 36,
+    "value": 67.24166666666667,
+    "working": "mean(avg_turnaround_min) over 36 non-blank rows = 2,420.7 / 36 = 67.2417",
+    "decimals": 1,
+    "source": "07_data/gate_truck_turnaround_daily.csv"
+  },
+  "K5_change_vs_register": {
+    "id": "K5_change_vs_register",
+    "name": "K5 turnaround change vs manual-register baseline (contract definition)",
+    "op": "expr",
+    "unit": "%",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": -28.090525328330198,
+    "working": "s = gate_anpr_slots = 67.24; m = gate_manual_mean = 93.51 -> 100 * (s - m) / m = -28.09",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "gate_like_for_like": {
+    "id": "gate_like_for_like",
+    "name": "Turnaround change, camera data only (first 2 weeks vs dispatch-slot period)",
+    "op": "expr",
+    "unit": "%",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": -24.055041036066555,
+    "working": "s = gate_anpr_slots = 67.24; f = gate_anpr_first = 88.54 -> 100 * (s - f) / f = -24.06",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "gate_step_infra": {
+    "id": "gate_step_infra",
+    "name": "Minutes removed in the week after the client's gate-infrastructure upgrade",
+    "op": "expr",
+    "unit": " min",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 5.7542857142857144,
+    "working": "f = gate_anpr_first = 88.54; w = gate_anpr_wb = 82.79 -> f - w = 5.754",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "gate_step_slots": {
+    "id": "gate_step_slots",
+    "name": "Minutes removed after dispatch slots began",
+    "op": "expr",
+    "unit": " min",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 15.544047619047618,
+    "working": "w = gate_anpr_wb = 82.79; s = gate_anpr_slots = 67.24 -> w - s = 15.54",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "det_junjul": {
+    "id": "det_junjul",
+    "name": "Detention paid, Jun-Jul average (lakh/month)",
+    "op": "expr",
+    "unit": " L/month",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 12.100000000000001,
+    "working": "jun = 11.8 (from e70b, `06_email/G_2026-09-22_finance_value_estimate.md:14`); jul = 12.4 (from e70b, `06_email/G_2026-09-22_finance_value_estimate.md:14`) -> (jun + jul) / 2 = 12.1",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "det_sep": {
+    "id": "det_sep",
+    "name": "Detention paid, September (finance estimate to month end, lakh)",
+    "op": "expr",
+    "unit": " L/month",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 3.9,
+    "working": "s = 3.9 (from e70b, `06_email/G_2026-09-22_finance_value_estimate.md:14`) -> s = 3.9",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "det_change_pct": {
+    "id": "det_change_pct",
+    "name": "Detention change, September vs Jun-Jul average",
+    "op": "expr",
+    "unit": "%",
+    "dataset": "",
+    "filter": {},
+    "note": "One month of data; September is partly an estimate; not all of it is the project's (client gate upgrade, client dispatch slots).",
+    "value": -67.76859504132231,
+    "working": "s = det_sep = 3.9; b = det_junjul = 12.1 -> 100 * (s - b) / b = -67.77",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  },
+  "survey_n": {
+    "id": "survey_n",
+    "name": "Supervisor survey respondents",
+    "op": "count",
+    "unit": "",
+    "dataset": "survey",
+    "filter": {},
+    "note": "",
+    "rows_used": 18,
+    "value": 18,
+    "working": "rows matching filter = 18",
+    "decimals": 0,
+    "source": "07_data/supervisor_survey_sep2026.csv"
+  },
+  "survey_useful": {
+    "id": "survey_useful",
+    "name": "Alerts useful (mean, 1-5)",
+    "op": "mean",
+    "unit": "",
+    "dataset": "survey",
+    "filter": {},
+    "note": "",
+    "rows_used": 18,
+    "value": 4.166666666666667,
+    "working": "mean(alerts_useful_1to5) over 18 non-blank rows = 75.0 / 18 = 4.1667",
+    "decimals": 1,
+    "source": "07_data/supervisor_survey_sep2026.csv"
+  },
+  "survey_noise": {
+    "id": "survey_noise",
+    "name": "Alert noise (mean, 1-5, lower is better)",
+    "op": "mean",
+    "unit": "",
+    "dataset": "survey",
+    "filter": {},
+    "note": "",
+    "rows_used": 18,
+    "value": 1.9444444444444444,
+    "working": "mean(noise_1to5) over 18 non-blank rows = 35.0 / 18 = 1.9444",
+    "decimals": 1,
+    "source": "07_data/supervisor_survey_sep2026.csv"
+  },
+  "survey_yes": {
+    "id": "survey_yes",
+    "name": "Would recommend to another unit: Yes",
+    "op": "count",
+    "unit": "",
+    "dataset": "survey",
+    "filter": {
+      "would_recommend_other_unit": "Yes"
+    },
+    "note": "",
+    "rows_used": 15,
+    "value": 15,
+    "working": "rows matching filter = 15",
+    "decimals": 0,
+    "source": "07_data/supervisor_survey_sep2026.csv"
+  },
+  "survey_dups": {
+    "id": "survey_dups",
+    "name": "Survey comments repeated word-for-word",
+    "op": "duplicate_count",
+    "unit": "",
+    "dataset": "survey",
+    "filter": {},
+    "note": "",
+    "rows_used": 18,
+    "value": 4,
+    "working": "15 non-blank values, 11 distinct -> 4 repeats",
+    "decimals": 0,
+    "source": "07_data/supervisor_survey_sep2026.csv"
+  },
+  "lti_2025": {
+    "id": "lti_2025",
+    "name": "Lost-time injuries, 2025",
+    "op": "sum",
+    "unit": "",
+    "dataset": "ehs",
+    "filter": {
+      "month": {
+        "between": [
+          "2025-01",
+          "2025-12"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 12,
+    "value": 4.0,
+    "working": "sum(lost_time_injuries) over 12 rows = 4",
+    "decimals": 0,
+    "source": "07_data/ehs_register_monthly_2025_2026.csv"
+  },
+  "lti_mar_sep_2026": {
+    "id": "lti_mar_sep_2026",
+    "name": "Lost-time injuries, Mar-Sep 2026",
+    "op": "sum",
+    "unit": "",
+    "dataset": "ehs",
+    "filter": {
+      "month": {
+        "between": [
+          "2026-03",
+          "2026-09"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 7,
+    "value": 0.0,
+    "working": "sum(lost_time_injuries) over 7 rows = 0",
+    "decimals": 0,
+    "source": "07_data/ehs_register_monthly_2025_2026.csv"
+  },
+  "nearmiss_pre": {
+    "id": "nearmiss_pre",
+    "name": "Near-miss reports per month, Jan-May 2026",
+    "op": "mean",
+    "unit": "",
+    "dataset": "ehs",
+    "filter": {
+      "month": {
+        "between": [
+          "2026-01",
+          "2026-05"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 5,
+    "value": 19.0,
+    "working": "mean(near_miss_reports) over 5 non-blank rows = 95.0 / 5 = 19.0000",
+    "decimals": 1,
+    "source": "07_data/ehs_register_monthly_2025_2026.csv"
+  },
+  "nearmiss_post": {
+    "id": "nearmiss_post",
+    "name": "Near-miss reports per month, Jul-Sep 2026 (definition changed 15 Jun)",
+    "op": "mean",
+    "unit": "",
+    "dataset": "ehs",
+    "filter": {
+      "month": {
+        "between": [
+          "2026-07",
+          "2026-09"
+        ]
+      }
+    },
+    "note": "",
+    "rows_used": 3,
+    "value": 43.666666666666664,
+    "working": "mean(near_miss_reports) over 3 non-blank rows = 131.0 / 3 = 43.6667",
+    "decimals": 1,
+    "source": "07_data/ehs_register_monthly_2025_2026.csv"
+  },
+  "spend_total": {
+    "id": "spend_total",
+    "name": "Project spend to date (lakh, before GST, excl. AMC)",
+    "op": "expr",
+    "unit": " L",
+    "dataset": "",
+    "filter": {},
+    "note": "",
+    "value": 107.69999999999999,
+    "working": "a = 6.5 (from e118, `06_email/G_2026-09-22_finance_value_estimate.md:28`); b = 20.4 (from e118, `06_email/G_2026-09-22_finance_value_estimate.md:28`); c = 80.8 (from e118, `06_email/G_2026-09-22_finance_value_estimate.md:28`) -> a + b + c = 107.7",
+    "rows_used": 0,
+    "decimals": 1,
+    "source": "evidence ledger"
+  }
+}
