@@ -1,0 +1,11 @@
+# The project library is confidential hackathon material: never commit it.
+library/
+*.zip
+
+# Local approval decisions are per-run records, not source
+approvals/*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
